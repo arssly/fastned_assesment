@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "esModuleInterop": true,
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "removeComments": true,
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": "./",
+        "strictNullChecks": true,
+    },
+    "include": [
+        "./**/*",
+        "./index.ts"
+, ".eslintrc.js"    ]
+}
