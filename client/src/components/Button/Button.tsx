@@ -1,10 +1,12 @@
 import { FC, ReactNode } from "react";
 import cn from "classnames";
 
+import "./button.scss";
+
 export enum ButtonTheme {
-  PRIMARY,
-  DARK_PRIMARY,
-  OUTLINE,
+  PRIMARY = "primary",
+  DARK_PRIMARY = "dark-primary",
+  OUTLINE = "outline",
 }
 
 type Props = {

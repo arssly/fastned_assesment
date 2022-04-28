@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Button, ButtonTheme } from "./Button";
+import { AddIcon } from "../SvgIcon";
 
 export default {
   component: Button,
@@ -15,7 +16,7 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 export const ConfigurableButton: ComponentStory<typeof Button> = (args) => {
-  return <Button {...args} />;
+  return <Button {...args} icon={<AddIcon />} />;
 };
 
 ConfigurableButton.args = {
