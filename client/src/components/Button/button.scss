@@ -3,9 +3,9 @@
 
 .base-button {
   border: 0;
-  padding: spacing.$s2 spacing.$s4;
+  padding: spacing.$s-2 spacing.$s-4;
   cursor: pointer;
-  border-radius: spacing.$s1;
+  border-radius: spacing.$s-1;
   color: colors.$medium-text-color;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
   span {
     display: flex;
     align-items: center;
-    margin: 0 spacing.$s1 0 0;
+    margin: 0 spacing.$s-1 0 0;
   }
 
 }

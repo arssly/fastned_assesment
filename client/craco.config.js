@@ -3,6 +3,8 @@ const CracoAlias = require("craco-alias");
 module.exports = {
     plugins: [
         {
+            // since react-scripts does not support paths option through webpack 
+            // we opt out for craco to fix this problem
             plugin: CracoAlias,
             options: {
                 source: "tsconfig",

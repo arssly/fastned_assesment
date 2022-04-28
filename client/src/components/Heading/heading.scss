@@ -1,0 +1,22 @@
+@use 'src/styles/colors';
+
+.heading {
+  color: colors.$medium-text-color;
+  font-weight: 600;
+  line-height: 1.19em;
+
+  &.type_h1 {
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+
+  &.type_h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  &.type_h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+}
