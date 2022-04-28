@@ -1,0 +1,12 @@
+// since react-scripts does not support paths option through webpack 
+// we opt out for craco to fix this problem
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+           "@pages" : ["src/pages"],
+           "@components" : ["src/components"],
+           "@src/*" : ["src/*"]
+         }
+    }
+}

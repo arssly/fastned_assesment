@@ -5,11 +5,13 @@ module.exports = {
     jest: true,
   },
   extends: [
-    "eslint:recommended",
-    "airbnb",
-    "plugin:@typescript-eslint/recommended",
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
     "plugin:react/recommended",
-    "prettier",
+    'plugin:jest/recommended',
+    'plugin:prettier/recommended',
+    'prettier',
   ],
   settings: {
     "import/resolver": {
@@ -25,6 +27,7 @@ module.exports = {
     },
     ecmaVersion: "latest",
     sourceType: "module",
+    project: './tsconfig.json',
   },
   plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
@@ -36,6 +39,7 @@ module.exports = {
       1,
       { extensions: [".tsx", ".jsx", "ts", "js"] },
     ],
+    "import/no-extraneous-dependencies": 0
   },
   ignorePatterns: ["node_modules/"],
 };
