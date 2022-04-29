@@ -17,7 +17,7 @@
 
   &.outline {
     background-color: transparent;
-    border: spacing.$s-1 solid colors.$gray;
+    border: spacing.$s-0 solid colors.$light-border-color;
   }
 
   &:disabled {

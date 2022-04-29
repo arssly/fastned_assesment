@@ -6,7 +6,7 @@
   border-radius: spacing.$s-2;
   width: 100%;
   font-size: texts.$small-font-size;
-  text-align: left;
+  text-align: center;
   border-collapse: collapse;
   table-layout: fixed;
 
@@ -25,5 +25,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  tr td:first-child, tr th:first-child {
+    text-align: left;
+    direction: ltr;
+  }
+
+  tr td:last-child, tr th:last-child {
+    text-align: right;
+    direction: rtl;
   }
 }
