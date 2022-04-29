@@ -1,7 +1,9 @@
 $yellow: rgb(255 221 48);
 $gray: rgb(74 74 73);
-
+$light-gray: rgb(240 240 240);
 
 
 // text colors
 $medium-text-color: $gray;
+$light-bg-color: $light-gray;
+$light-border-color: darken($light-gray, 10%);

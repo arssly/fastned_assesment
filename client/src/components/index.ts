@@ -3,3 +3,4 @@ export * from "./SvgIcon";
 export * from "./Button";
 export * from "./Heading";
 export * from "./Container";
+export * from "./Table";

@@ -1,4 +1,6 @@
 @use 'src/styles/colors';
+@use 'src/styles/texts';
+@use 'src/styles/spacing';
 
 .heading {
   color: colors.$medium-text-color;
@@ -6,17 +8,17 @@
   line-height: 1.19em;
 
   &.type_h1 {
-    font-size: 26px;
-    margin-bottom: 18px;
+    font-size: texts.$biggest-font-size;
+    margin-bottom: spacing.$s-4;
   }
 
   &.type_h2 {
-    font-size: 24px;
-    margin-bottom: 12px;
+    font-size: texts.$bigger-font-size;
+    margin-bottom: spacing.$s-5;
   }
 
   &.type_h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
+    font-size: texts.$big-font-size;
+    margin-bottom: spacing.$s-5;
   }
 }

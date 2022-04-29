@@ -1,6 +1,8 @@
+@use 'src/styles/spacing';
+
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: spacing.$s-5;
+  padding-left: spacing.$s-5;
   margin-right: auto;
   margin-left: auto;
 }

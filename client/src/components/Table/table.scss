@@ -1,0 +1,29 @@
+@use "src/styles/spacing";
+@use "src/styles/colors";
+@use "src/styles/texts";
+
+.f-table {
+  border-radius: spacing.$s-2;
+  width: 100%;
+  font-size: texts.$small-font-size;
+  text-align: left;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  tr{
+    border: spacing.$s-0 solid colors.$light-border-color;
+  }
+
+  tr:nth-child(even),
+  thead {
+    background-color: colors.$light-bg-color;
+  }
+
+  th,
+  td {
+    padding: spacing.$s-3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

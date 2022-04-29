@@ -13,6 +13,7 @@
     "order/properties-alphabetical-order": null,
     "property-no-vendor-prefix": null,
     "value-no-vendor-prefix": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "function-no-unknown": [true, {"ignoreFunctions": ["lighten", "darken"]}]
   }
 }
