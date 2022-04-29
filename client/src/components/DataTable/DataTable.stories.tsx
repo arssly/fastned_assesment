@@ -7,7 +7,9 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof DataTable>;
 
-export const ConfigurableButton: ComponentStory<typeof DataTable> = (args) => {
+export const ConfigurableDataTable: ComponentStory<typeof DataTable> = (
+  args
+) => {
   return <DataTable {...args} />;
 };
 
@@ -23,7 +25,7 @@ const data = [
   ["secondRow1", "secondRow2", "secondRow3"],
 ];
 
-ConfigurableButton.args = {
+ConfigurableDataTable.args = {
   caption: "smaple data table",
   headers: ["first one", "second Once", "Third One"],
   data,

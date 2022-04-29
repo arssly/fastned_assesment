@@ -21,7 +21,6 @@ export const SvgIcon: React.FC<SVGIconProps> = (props) => {
     className = "",
     display,
     viewBox = "0 0 48 48",
-    stroke = "black",
     ...rest
   } = props;
   return (
@@ -35,7 +34,6 @@ export const SvgIcon: React.FC<SVGIconProps> = (props) => {
       style={{
         width,
         height,
-        stroke,
       }}
       {...rest}
     >
