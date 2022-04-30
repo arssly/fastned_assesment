@@ -1,0 +1,143 @@
+@use "src/styles/spacing";
+@use "src/styles/colors";
+
+.text-input { 
+  display: flex;
+  flex-direction: column;
+  color: colors.$medium-text-color;
+
+  label { 
+    margin-bottom: spacing.$s-2;;
+  }
+
+  input {
+    border: spacing.$s-0 solid colors.$light-bg-color;
+    padding: spacing.$s-3 spacing.$s-4;
+    border-radius: spacing.$s-2;
+    outline: none;
+  }
+}
+
+
+// select box
+.html-select {
+  display: none;
+  color: colors.$medium-text-color;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  user-select: none;
+  width: 80%;
+
+  label { 
+    margin-bottom: spacing.$s-2;
+    display: inline-block;
+  }
+}
+
+.custom-select {
+  border: spacing.$s-0 solid colors.$light-bg-color;
+  padding: spacing.$s-3 spacing.$s-4;
+  border-radius: spacing.$s-2;
+  width: 100%;
+  color: colors.$medium-text-color;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-select__trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.custom-options {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: colors.$white;
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+  padding: spacing.$s-3;
+  overflow-y: auto;
+}
+
+.custom-select.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  margin-top: spacing.$s-3;
+  box-shadow: -2px 2px 5px change(colors.$light-bg-color, $alpha: .9);
+  border-radius: spacing.$s-3;
+}
+
+.custom-option {
+  position: relative;
+  display: block;
+  padding: spacing.$s-2 spacing.$s-3;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: spacing.$s-2;
+  color: colors.$medium-text-color;
+  margin-bottom: spacing.$s-4;
+  height: spacing.$s-7;
+}
+
+.option-container:hover {
+  .custom-option {
+    cursor: pointer;
+    background-color: colors.$light-bg-color;
+  }
+}
+
+.custom-option.selected {
+  color: colors.$medium-text-color;
+  background-color: colors.$light-bg-color;
+}
+
+.arrow {
+  position: relative;
+  height: 7.72px;
+  width: 12.26px;
+}
+
+.arrow::before,
+.arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0.15rem;
+  height: 100%;
+  transition: all 0.5s;
+}
+
+.arrow::before {
+  left: -2px;
+  transform: rotate(-45deg);
+  background-color: colors.$medium-text-color;
+}
+
+.arrow::after {
+  left: 2px;
+  transform: rotate(45deg);
+  background-color: colors.$medium-text-color;
+}
+
+.open .arrow::before {
+  left: -2px;
+  transform: rotate(45deg);
+}
+
+.open .arrow::after {
+  left: 2px;
+  transform: rotate(-45deg);
+}

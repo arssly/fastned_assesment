@@ -12,24 +12,23 @@ export const TableCell: FC<TableCellProps> = ({ children, className = "" }) => {
   return <td className={cn("table-cell", className)}>{children}</td>;
 };
 
-type TableRowProps = {
+export type TableRowProps = {
   className?: string;
   children:
     | React.ReactElement<TableCellProps>[]
-    | React.ReactElement<TableCellProps>;
+    | React.ReactElement<TableCellProps>
+    | string;
 };
 
 export const TableRow: FC<TableRowProps> = ({ children, className = "" }) => {
   return <tr className={cn("table-row", className)}>{children}</tr>;
 };
 
-type TableProps = {
+export type TableProps = {
   className?: string;
   caption?: ReactNode;
   headers: string[];
-  children:
-    | React.ReactElement<TableRowProps>[]
-    | React.ReactElement<TableRowProps>;
+  children: ReactNode;
 };
 export const Table: FC<TableProps> = ({
   caption,

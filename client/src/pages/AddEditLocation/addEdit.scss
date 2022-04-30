@@ -1,0 +1,48 @@
+@use "src/styles/spacing";
+
+.add-edit-location {
+  .heading {
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .card-spacing {
+    padding: spacing.$s-6;
+    margin: spacing.$s-6 0;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+
+    > span {
+      flex: 1;
+      margin: spacing.$s-3 spacing.$s-4 spacing.$s-3 0;
+    }
+
+    span:last-child {
+      margin-right: 0;
+    }
+  }
+
+
+  // charger css
+  .charger-heading { 
+    display: flex;
+    justify-content: space-between;
+
+    > span {
+      display: flex;
+      align-items: center;
+    }
+
+    .no-margin { 
+      margin: 0;
+    }
+  }
+}

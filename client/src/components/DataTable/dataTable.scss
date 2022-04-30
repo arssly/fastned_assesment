@@ -1,0 +1,6 @@
+@use "src/styles/colors";
+
+table tr td.empty-message { 
+  text-align: center !important;
+  color: colors.$medium-text-color;
+}
