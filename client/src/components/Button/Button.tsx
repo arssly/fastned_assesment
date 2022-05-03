@@ -10,7 +10,7 @@ export enum ButtonTheme {
 }
 
 type Props = {
-  theme: ButtonTheme;
+  theme?: ButtonTheme;
   disabled?: boolean;
   title: string;
   icon?: ReactNode;
@@ -19,7 +19,7 @@ type Props = {
 };
 
 export const Button: FC<Props> = ({
-  theme,
+  theme = ButtonTheme.PRIMARY,
   disabled = false,
   title,
   icon,

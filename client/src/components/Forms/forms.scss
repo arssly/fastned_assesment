@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "src/styles/spacing";
 @use "src/styles/colors";
 
@@ -76,7 +77,7 @@
   visibility: visible;
   pointer-events: all;
   margin-top: spacing.$s-3;
-  box-shadow: -2px 2px 5px change(colors.$light-bg-color, $alpha: .9);
+  box-shadow: -2px 2px 5px color.change(colors.$light-bg-color, $alpha: .9);
   border-radius: spacing.$s-3;
 }
 
