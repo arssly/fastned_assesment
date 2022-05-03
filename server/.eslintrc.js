@@ -9,9 +9,7 @@ module.exports = {
   ],
   settings: {
     "import/resolver": {
-      node: {
-        extensions: [".js", ".ts"],
-      },
+      "eslint-import-resolver-typescript": {},
     },
   },
   rules: {
@@ -19,5 +17,5 @@ module.exports = {
     "import/extensions": 0,
     "import/prefer-default-export": 0,
   }, // our own set of customized rules
-  ignorePatterns: ["node_modules/"],
+  ignorePatterns: ["node_modules/", "dist/"],
 };

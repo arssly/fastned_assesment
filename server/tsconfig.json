@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
+      "baseUrl": "./",
+      "paths": {
+        "@src/*": ["src/*"],
+      },
         "module": "commonjs",
         "target": "es6",
         "esModuleInterop": true,
@@ -11,11 +15,11 @@
         "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
         "outDir": "dist",
-        "baseUrl": "./",
         "strictNullChecks": true,
     },
     "include": [
         "./**/*",
-        "./index.ts"
-, ".eslintrc.js"    ]
+        "./index.ts", 
+        ".eslintrc.js"
+    ]
 }

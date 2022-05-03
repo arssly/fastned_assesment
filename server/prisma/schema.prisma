@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum chargerTypes {
+  HPC
+  T52
+  T53C
+}
+
+enum chargerStatus {
+  CONNECTED
+  NOT_CONNECTED
+  REMOVED
+}
+
+model charger {
+  id           Int           @id @default(autoincrement())
+  name         String
+  type         chargerTypes
+  serialNumber String
+  status       chargerStatus
+  lastUpdated  DateTime      @updatedAt
+  location location @relation(fields: [locationId], references: [id])
+  locationId Int
+}
+
+model location {
+  id       Int    @id @default(autoincrement())
+  name     String
+  location Int
+  postalCode String
+  latUpdated DateTime @default(now())
+  country String
+  chargers charger[]
+}
