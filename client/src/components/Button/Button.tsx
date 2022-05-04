@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, HTMLProps } from "react";
 import cn from "classnames";
 
 import "./button.scss";
@@ -10,13 +10,14 @@ export enum ButtonTheme {
 }
 
 type Props = {
+  type?: "button" | "submit" | "reset";
   theme?: ButtonTheme;
   disabled?: boolean;
-  title: string;
+  title?: string;
   icon?: ReactNode;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-};
+} & HTMLProps<HTMLButtonElement>;
 
 export const Button: FC<Props> = ({
   theme = ButtonTheme.PRIMARY,
@@ -25,6 +26,8 @@ export const Button: FC<Props> = ({
   icon,
   className,
   onClick,
+  type,
+  ...rest
 }) => {
   let themeClassName: string;
   switch (theme) {
@@ -45,9 +48,11 @@ export const Button: FC<Props> = ({
       className={cn("base-button", { [themeClassName]: true }, className)}
       onClick={onClick}
       disabled={disabled}
+      type={type}
+      {...rest}
     >
       {icon && <span>{icon}</span>}
-      <span>{title}</span>
+      {title && <span>{title}</span>}
     </button>
   );
 };

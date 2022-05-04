@@ -23,7 +23,7 @@ export const Form = <FormValues,>(props: Props<FormValues>) => {
   const methods = useForm<FormValues>({
     mode: "all",
     defaultValues,
-    resolver: yupResolver(schema),
+    resolver: schema ? yupResolver(schema) : undefined,
   });
   return (
     <FormProvider {...methods}>

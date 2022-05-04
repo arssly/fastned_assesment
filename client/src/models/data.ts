@@ -13,10 +13,12 @@ export enum ChargerStatus {
 export type Charger = {
   id: number;
   type: ChargerTypes;
-  serialNumber: string;
+  serialNumber: number;
   status: ChargerStatus;
   lastUpdated: string;
 };
+
+export type LocalCharger = Partial<Charger> & { localId?: string };
 
 type LocationCommon = {
   id: number;

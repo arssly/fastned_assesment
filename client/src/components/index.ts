@@ -8,3 +8,4 @@ export * from "./DataTable";
 export * from "./Card";
 export * from "./Forms";
 export * from "./Modal";
+export * from "./Tag";

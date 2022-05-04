@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import * as yup from "yup";
@@ -12,9 +12,9 @@ import {
   Modal,
   CrossIcon,
 } from "@components";
-import { Location } from "@models";
+import { Location, Charger, LocalCharger } from "@models";
 import { AddEditFields } from "./AddEditFields";
-import { Chargers } from "./Chargers";
+import { Chargers } from "./Chargers/Chargers";
 import "./addEdit.scss";
 
 type Props = {
@@ -30,6 +30,10 @@ export const AddEditLocation: FC<Props> = ({
   location,
   modalView = false,
 }) => {
+  const [listedChargers, setListedChargers] = useState<Charger[]>(
+    location?.chargers || []
+  );
+
   const schema = yup.object().shape({
     name: yup.string().min(3).max(50).required("name is required"),
     "Location No": yup
@@ -41,6 +45,15 @@ export const AddEditLocation: FC<Props> = ({
     "Postal Code": yup.number().required("postal code is required"),
     country: yup.string().required("country is required"),
   });
+
+  const addEditCharger = (charger: LocalCharger) => {
+    console.log("add or edit this charger", charger);
+  };
+
+  const deleteCharger = (charger: LocalCharger) => {
+    console.log("delete this charger", charger);
+  };
+
   return (
     <div className="add-edit-location">
       <Form<LocationFormValues>
@@ -54,7 +67,11 @@ export const AddEditLocation: FC<Props> = ({
           <AddEditFields isEdit={editing} location={location} />
         </Card>
         <Card className={cn("card-spacing", { modalView })}>
-          <Chargers chargers={location?.chargers ?? []} />
+          <Chargers
+            chargers={listedChargers}
+            onAddEditCharger={addEditCharger}
+            onDeleteCharger={deleteCharger}
+          />
         </Card>
         <div className="submit">
           <Button
