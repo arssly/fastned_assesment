@@ -1,46 +1,28 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Button, ButtonTheme, DataTable } from "@components";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useGetLocations } from "@services";
 import { Intro } from "./intro";
 
 import "./locationList.scss";
 
 export const LocationList: FC = () => {
-  const data = [
-    {
-      id: 1,
-      name: "ams",
-      location: 1123,
-      chargers: 3,
-      lastUpdated: "yesterday",
-      country: "NLD",
-    },
-    {
-      id: 2,
-      name: "doe",
-      location: 323,
-      chargers: 5,
-      lastUpdated: "last year",
-      country: "NLD",
-    },
-    {
-      id: 3,
-      name: "THE ONE",
-      location: 11111,
-      chargers: 11,
-      lastUpdated: "never",
-      country: "NLD",
-    },
-  ];
+  const { data: locations, isLoading } = useGetLocations();
 
-  const convertedData = data.map((d) => {
+  const locationRows = locations?.map((l) => {
     return [
-      d.name,
-      d.location,
-      d.chargers,
-      d.country,
-      d.lastUpdated,
-      <Button theme={ButtonTheme.OUTLINE} title="Edit" key={`edit-${d.id}`} />,
-    ];
+      l.name,
+      l.location,
+      l.chargerCount,
+      l.country,
+      formatDistanceToNow(new Date(l.lastUpdated)),
+      <Button
+        theme={ButtonTheme.OUTLINE}
+        title="Edit"
+        key={`edit-${l.id}`}
+        className="edit-button"
+      />,
+    ] as ReactNode[];
   });
 
   return (
@@ -55,7 +37,12 @@ export const LocationList: FC = () => {
           "Last Updated",
           "Actions",
         ]}
-        data={convertedData}
+        data={locationRows}
+        emptyMessage={
+          isLoading
+            ? "please wait while data is loading"
+            : "No locations has been added yet"
+        }
       />
     </div>
   );

@@ -16,13 +16,17 @@ export const AddEditHeading: FC<Props> = ({ isEdit = false, location }) => {
       {isEdit && (
         <span>
           <LocationIcon width={24} height={24} />
-          <Heading type={HeadingTypes.h3}>{location?.name}</Heading>
+          <Heading className="no-margin" type={HeadingTypes.h3}>
+            {location?.name}
+          </Heading>
         </span>
       )}
       {!isEdit && (
         <span>
           <AddIcon width={24} height={24} />
-          <Heading type={HeadingTypes.h3}>Add New Location</Heading>
+          <Heading type={HeadingTypes.h3} className="no-margin">
+            Add New Location
+          </Heading>
         </span>
       )}
     </div>

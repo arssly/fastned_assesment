@@ -16,6 +16,7 @@ module.exports = {
     "prettier/prettier": "error",
     "import/extensions": 0,
     "import/prefer-default-export": 0,
+    "no-underscore-dangle": 0,
   }, // our own set of customized rules
   ignorePatterns: ["node_modules/", "dist/"],
 };

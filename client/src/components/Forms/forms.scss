@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "src/styles/spacing";
 @use "src/styles/colors";
+@use "src/styles/texts";
 
 .text-input { 
   display: flex;
@@ -19,6 +20,10 @@
   }
 }
 
+.form-error-message { 
+  font-size: texts.$very-small-font-size;
+  color: colors.$danger-color;
+}
 
 // select box
 .html-select {
@@ -29,7 +34,6 @@
 .custom-select-wrapper {
   position: relative;
   user-select: none;
-  width: 80%;
 
   label { 
     margin-bottom: spacing.$s-2;
@@ -41,7 +45,6 @@
   border: spacing.$s-0 solid colors.$light-bg-color;
   padding: spacing.$s-3 spacing.$s-4;
   border-radius: spacing.$s-2;
-  width: 100%;
   color: colors.$medium-text-color;
   outline: none;
   position: relative;
@@ -133,12 +136,12 @@
   background-color: colors.$medium-text-color;
 }
 
-.open .arrow::before {
+.custom-select.open .arrow::before {
   left: -2px;
   transform: rotate(45deg);
 }
 
-.open .arrow::after {
+.custom-select.open .arrow::after {
   left: 2px;
   transform: rotate(-45deg);
 }

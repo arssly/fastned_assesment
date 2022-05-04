@@ -6,19 +6,17 @@
   color: colors.$medium-text-color;
   font-weight: 600;
   line-height: 1.19em;
+  margin: 0;
 
   &.type_h1 {
     font-size: texts.$biggest-font-size;
-    margin-bottom: spacing.$s-4;
   }
 
   &.type_h2 {
     font-size: texts.$bigger-font-size;
-    margin-bottom: spacing.$s-5;
   }
 
   &.type_h3 {
     font-size: texts.$big-font-size;
-    margin-bottom: spacing.$s-5;
   }
 }

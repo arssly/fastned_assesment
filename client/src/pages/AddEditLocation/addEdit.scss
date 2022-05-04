@@ -1,6 +1,13 @@
 @use "src/styles/spacing";
+@use "src/styles/colors";
 
 .add-edit-location {
+  font-weight: 600;
+
+  button {
+    font-weight: 600;
+  }
+
   .heading {
     display: flex;
     justify-content: space-between;
@@ -9,11 +16,21 @@
       display: flex;
       align-items: center;
     }
+
+    .no-margin { 
+      margin: 0;
+    }
   }
 
   .card-spacing {
     padding: spacing.$s-6;
     margin: spacing.$s-6 0;
+
+    &.modalView { 
+      background-color: transparent;
+      border: 0;
+      box-shadow: none;
+    }
   }
 
   .row {
@@ -30,11 +47,18 @@
     }
   }
 
+  .submit { 
+    margin: spacing.$s-6;
+    direction: rtl;
+  }
+
+
 
   // charger css
   .charger-heading { 
     display: flex;
     justify-content: space-between;
+    margin-bottom: spacing.$s-5;
 
     > span {
       display: flex;
@@ -44,5 +68,66 @@
     .no-margin { 
       margin: 0;
     }
+  }
+}
+
+.add-charger { 
+  color: colors.$medium-text-color;
+  min-width: 800px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: spacing.$s-6;
+
+    svg { 
+      cursor: pointer;
+    }
+  }
+
+  form { 
+    display: flex;
+    justify-content: space-between;
+    padding: spacing.$s-6;
+
+    > * {
+      flex: 1;
+      margin-right: spacing.$s-4;
+    }
+
+    > *:last-child { 
+      margin-right: 0;
+    }
+  }
+
+  .divider { 
+    width: 100%;
+    border-bottom: 1px solid colors.$light-border-color;
+  }
+
+  .submit { 
+    padding: spacing.$s-6 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: colors.$very-light-bg-color;
+    border-radius: 0 0 spacing.$s-3 spacing.$s-3;
+
+    button { 
+      margin: 0 spacing.$s-4;
+    }
+  }
+}
+
+.close-modal { 
+  direction: rtl;
+  padding: spacing.$s-6;
+  padding-bottom: 0;
+  margin-bottom: - 2 * spacing.$s-6;
+  color: colors.$medium-text-color;
+
+  svg { 
+    cursor: pointer;
   }
 }

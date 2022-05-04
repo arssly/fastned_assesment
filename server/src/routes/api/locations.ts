@@ -5,12 +5,19 @@ const router = Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const locations = await prisma.location.findMany({
+    const locationsWithCount = await prisma.location.findMany({
       include: {
         _count: {
           select: { chargers: true },
         },
       },
+    });
+    const locations = locationsWithCount.map((l) => {
+      const {
+        _count: { chargers },
+        ...loc
+      } = l;
+      return { ...loc, chargerCount: chargers };
     });
     res.json(locations);
   } catch (err) {
@@ -41,7 +48,7 @@ router.post("/", async (req, res, next) => {
       data: {
         name: req.body.name,
         location: req.body.locationNo,
-        postalCode: req.body.postalCode,
+        postalCode: String(req.body.postalCode),
         country: req.body.country,
         chargers: {
           createMany: req.body.chargers,
@@ -58,18 +65,11 @@ router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const location = await prisma.location.findUnique({
-      where: {
-        id: Number(id),
-      },
-    });
-
-    const putData = { ...location, ...req.body };
     const updatedLocation = await prisma.location.update({
       where: {
         id: Number(id),
       },
-      data: putData,
+      data: req.body,
     });
     res.json(updatedLocation);
   } catch (err) {

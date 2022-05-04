@@ -1,11 +1,14 @@
 $yellow: rgb(255 221 48);
 $gray: rgb(74 74 73);
 $light-gray: rgb(240 240 240);
+$very-light-gray: rgb(250 250 250);
 $white: rgba(255 255 255);
+$danger-color: rgb(150 0 0);
 
 
 // text colors
 $medium-text-color: $gray;
 $primary-bg-color: $white;
 $light-bg-color: $light-gray;
+$very-light-bg-color: $very-light-gray;
 $light-border-color: darken($light-gray, 10%);

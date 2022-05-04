@@ -6,7 +6,8 @@
         "@components": ["src/components"],
         "@pages": ["src/pages"],
         "@models": ["src/models"],
-        "@hooks": ["src/hooks"]
+        "@hooks": ["src/hooks"],
+        "@services": ["src/services"]
       }
     }
   }

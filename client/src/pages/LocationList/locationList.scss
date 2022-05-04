@@ -1,8 +1,19 @@
+@use "src/styles/spacing";
+
 .location-list {
   .location-header {
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
+    button { 
+      font-weight: 600;
+    }
+  }
+
+  .edit-button { 
+    padding-right: spacing.$s-5;
+    padding-left: spacing.$s-5;
   }
 }

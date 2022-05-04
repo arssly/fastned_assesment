@@ -6,7 +6,7 @@ import "./dataTable.scss";
 type Props = {
   caption?: ReactNode;
   headers: string[];
-  data: ReactNode[][];
+  data?: ReactNode[][];
   emptyMessage?: string;
 };
 

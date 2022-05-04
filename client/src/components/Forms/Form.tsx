@@ -6,6 +6,7 @@ import {
   DeepPartial,
   FormProvider,
 } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import "./forms.scss";
 
@@ -14,13 +15,15 @@ type Props<FormValues> = {
   schema?: any;
   formName: string;
   defaultValues?: UnpackNestedValue<DeepPartial<FormValues>>;
-  children: ReactNode;
+  children: ReactNode | ReactNode[];
 };
 
 export const Form = <FormValues,>(props: Props<FormValues>) => {
-  const { formName, defaultValues, children, onSubmit } = props;
+  const { formName, defaultValues, children, onSubmit, schema } = props;
   const methods = useForm<FormValues>({
+    mode: "all",
     defaultValues,
+    resolver: yupResolver(schema),
   });
   return (
     <FormProvider {...methods}>

@@ -42,7 +42,7 @@ export const Button: FC<Props> = ({
   return (
     <button
       role="button"
-      className={cn("base-button", { [themeClassName]: true, className })}
+      className={cn("base-button", { [themeClassName]: true }, className)}
       onClick={onClick}
       disabled={disabled}
     >

@@ -24,7 +24,6 @@ enum chargerStatus {
 
 model charger {
   id           Int           @id @default(autoincrement())
-  name         String
   type         chargerTypes
   serialNumber String
   status       chargerStatus
@@ -38,7 +37,7 @@ model location {
   name     String
   location Int
   postalCode String
-  latUpdated DateTime @default(now())
+  lastUpdated DateTime @default(now())
   country String
   chargers charger[]
 }

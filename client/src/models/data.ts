@@ -18,12 +18,14 @@ export type Charger = {
   lastUpdated: string;
 };
 
-export type Location = {
+type LocationCommon = {
   id: number;
   name: string;
   location: number;
-  chargers: Charger[];
   postalCode: string;
   lastUpdated: string;
   country: string;
 };
+
+export type Location = LocationCommon & { chargers: Charger[] };
+export type LocationList = LocationCommon & { chargerCount: number };

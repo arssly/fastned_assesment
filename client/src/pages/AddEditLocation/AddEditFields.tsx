@@ -25,7 +25,7 @@ export const AddEditFields: FC<Props> = ({ isEdit = false, location }) => {
 
       <span className="row">
         <TextInput name="city" />
-        <TextInput name="postalCode" />
+        <TextInput name="Postal Code" />
         <SelectBox
           options={[
             { label: "IRAN", value: "IRN" },

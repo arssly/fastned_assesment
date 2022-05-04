@@ -14,7 +14,9 @@ export const TextInput: FC<Props> = ({ name, className }) => {
     <span className={cn("text-input", className)}>
       <label htmlFor={name}>{name}</label>
       <input type="text" {...register(name)} placeholder={name} />
-      {errors[name] && errors[name]}
+      {errors[name] && (
+        <span className="form-error-message">{errors[name]?.message}</span>
+      )}
     </span>
   );
 };

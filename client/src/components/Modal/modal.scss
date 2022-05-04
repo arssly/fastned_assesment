@@ -20,7 +20,7 @@
   z-index: -200;
 
   &.open {
-    background-color: colors.$light-bg-color;
+    background-color: rgb(0 0 0 / 50%);
     backdrop-filter: blur(2px);
     z-index: 200;
   }
@@ -38,6 +38,7 @@
     border-radius: 8px;
     max-width: calc(100% - 40px);
     z-index: 1;
+    background-color: colors.$white;
 
     &:not(.scrollable) {
       max-height: calc(100vh - 40px);

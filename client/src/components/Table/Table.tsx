@@ -41,8 +41,8 @@ export const Table: FC<TableProps> = ({
       {caption && <caption>{caption}</caption>}
       <thead>
         <tr key="headers">
-          {headers.map((h) => (
-            <th key="h">{h}</th>
+          {headers.map((h, i) => (
+            <th key={i}>{h}</th>
           ))}
         </tr>
       </thead>

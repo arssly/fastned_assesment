@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Container, Header } from "@components";
-import { LocationList, AddEditLocation } from "@pages";
+import { LocationList, AddEditLocation, AddEditLocationModal } from "@pages";
 
 function App() {
   const location = useLocation();
@@ -19,7 +19,7 @@ function App() {
         {state?.backgroundLocation && (
           <Routes>
             <Route path="/locations/:id" element={<div />} />
-            <Route path="/locations/add" element={<div />} />
+            <Route path="/locations/add" element={<AddEditLocationModal />} />
           </Routes>
         )}
       </Container>
