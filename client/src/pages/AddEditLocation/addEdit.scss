@@ -135,3 +135,16 @@
 .charger-buttons {
   display: flex;
 }
+
+.full-page-loading { 
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 50%);
+}

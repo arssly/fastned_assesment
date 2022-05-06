@@ -1,2 +1,2 @@
-export * from "./AddEditLocation";
+export * from "./AddLocation";
 export * from "./EditLocation";

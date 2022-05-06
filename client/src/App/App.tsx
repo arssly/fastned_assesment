@@ -1,12 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Container } from "@components";
-import {
-  LocationList,
-  AddEditLocation,
-  AddEditLocationModal,
-  EditLocation,
-  EditLocationModal,
-} from "@pages";
+import { LocationList, EditLocation, AddLocation } from "@pages";
 
 function App() {
   const location = useLocation();
@@ -19,7 +13,7 @@ function App() {
           <Route path="/" element={<LocationList />} />
           <Route path="/locations" element={<LocationList />} />
           <Route path="/locations/:id" element={<EditLocation />} />
-          <Route path="/locations/add" element={<AddEditLocation />} />
+          <Route path="/locations/add" element={<AddLocation />} />
           <Route
             path="*"
             element={
@@ -31,8 +25,8 @@ function App() {
         </Routes>
         {state?.backgroundLocation && (
           <Routes>
-            <Route path="/locations/:id" element={<EditLocationModal />} />
-            <Route path="/locations/add" element={<AddEditLocationModal />} />
+            <Route path="/locations/:id" element={<EditLocation modalView />} />
+            <Route path="/locations/add" element={<AddLocation modalView />} />
           </Routes>
         )}
       </Container>
