@@ -9,7 +9,7 @@ export enum ButtonTheme {
   OUTLINE = "outline",
 }
 
-type Props = {
+export type ButtonProps = {
   type?: "button" | "submit" | "reset";
   theme?: ButtonTheme;
   disabled?: boolean;
@@ -19,7 +19,7 @@ type Props = {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 } & HTMLProps<HTMLButtonElement>;
 
-export const Button: FC<Props> = ({
+export const Button: FC<ButtonProps> = ({
   theme = ButtonTheme.PRIMARY,
   disabled = false,
   title,

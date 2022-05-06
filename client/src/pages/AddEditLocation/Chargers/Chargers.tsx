@@ -16,7 +16,7 @@ import { ChargerModal } from "./ChargerModal";
 
 function transformChargers(
   chargers: LocalCharger[],
-  addEditCallback: (charger: LocalCharger) => void,
+  openEditModal: (charger: LocalCharger) => void,
   deleteCallback: (charger: LocalCharger) => void
 ) {
   return chargers.map((c) => {
@@ -32,13 +32,15 @@ function transformChargers(
       <span className="charger-buttons">
         <Button
           theme={ButtonTheme.OUTLINE}
+          type="button"
           icon={<EditIcon width={24} height={24} />}
           onClick={() => {
-            addEditCallback(c);
+            openEditModal(c);
           }}
         />
         <Button
           theme={ButtonTheme.OUTLINE}
+          type="button"
           icon={<DeleteIcon width={24} height={24} />}
           onClick={() => {
             deleteCallback(c);
@@ -62,7 +64,7 @@ function transformChargers(
 
 type Props = {
   chargers: LocalCharger[];
-  onAddEditCharger: (charger: LocalCharger) => Promise<boolean>;
+  onAddEditCharger: (charger: LocalCharger) => void;
   onDeleteCharger: (charger: LocalCharger) => void;
 };
 export const Chargers: FC<Props> = ({
@@ -71,13 +73,27 @@ export const Chargers: FC<Props> = ({
   onDeleteCharger,
 }) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [editingCharger, setEditingCharger] = useState<LocalCharger | null>(
+    null
+  );
+
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  const openEditModal = (c: LocalCharger) => {
+    setEditingCharger(c);
+    setModalOpen(true);
+  };
+
+  const onChargerSave = (c: LocalCharger) => {
+    onAddEditCharger(c);
+    setEditingCharger(null);
+  };
+
   const transformedChargers = transformChargers(
     chargers,
-    onAddEditCharger,
+    openEditModal,
     onDeleteCharger
   );
   return (
@@ -100,7 +116,11 @@ export const Chargers: FC<Props> = ({
         emptyMessage="no Charger has been added to this location yet"
       />
       <Modal isOpen={modalOpen} onClose={closeModal}>
-        <ChargerModal onClose={closeModal} onSave={onAddEditCharger} />
+        <ChargerModal
+          onClose={closeModal}
+          onSave={onChargerSave}
+          charger={editingCharger}
+        />
       </Modal>
     </>
   );

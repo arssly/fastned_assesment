@@ -62,13 +62,19 @@ export const AddEditLocation: FC<Props> = ({
     if (!charger.id && !charger.localId) {
       charger.localId = generateID();
       setListedChargers([...listedChargers, charger]);
-      return true;
+    } else if (charger.localId && !charger.id) {
+      setListedChargers(
+        listedChargers.map((c) => (c.localId === charger.localId ? charger : c))
+      );
     }
-    return false;
   };
 
   const deleteCharger = (charger: LocalCharger) => {
-    console.log("delete this charger", charger);
+    if (!charger.id) {
+      setListedChargers(
+        listedChargers.filter((c) => c.localId !== charger.localId)
+      );
+    }
   };
 
   const submitLocation: SubmitHandler<LocationFormValues> = (l) => {
