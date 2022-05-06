@@ -15,6 +15,5 @@ type Props = {
 };
 
 export const Tag: FC<Props> = ({ children, status, className }) => {
-  console.log("status is", status);
   return <span className={cn("tag", status, className)}>{children}</span>;
 };

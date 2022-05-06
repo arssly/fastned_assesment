@@ -25,7 +25,7 @@ enum chargerStatus {
 model charger {
   id           Int           @id @default(autoincrement())
   type         chargerTypes
-  serialNumber String
+  serialNumber Int
   status       chargerStatus
   lastUpdated  DateTime      @updatedAt
   location location @relation(fields: [locationId], references: [id])
@@ -37,7 +37,8 @@ model location {
   name     String
   location Int
   postalCode String
-  lastUpdated DateTime @default(now())
+  lastUpdated DateTime  @updatedAt
   country String
+  city String
   chargers charger[]
 }

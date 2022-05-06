@@ -1,4 +1,5 @@
-import { FC, useRef } from "react";
+import { FC, useRef, useState } from "react";
+import { SubmitHandler, useFormContext } from "react-hook-form";
 import * as yup from "yup";
 
 import {
@@ -24,7 +25,7 @@ const selectChargerTypeOptions = (
 type Props = {
   charger?: Charger;
   onClose: () => void;
-  onSave: (charger: LocalCharger) => void;
+  onSave: (charger: LocalCharger) => Promise<boolean>;
 };
 
 type ChargerFormValue = {
@@ -33,7 +34,20 @@ type ChargerFormValue = {
   "Charger Type": string;
 };
 
+const SubmitButton = ({ submit, ...rest }: any) => {
+  const { handleSubmit } = useFormContext();
+  return (
+    <Button
+      {...rest}
+      onClick={() => {
+        handleSubmit(submit)();
+      }}
+    />
+  );
+};
+
 export const ChargerModal: FC<Props> = ({ onSave, onClose, charger }) => {
+  const [disabled, setDisabled] = useState<boolean>(false);
   const subButtonRef = useRef<HTMLInputElement>(null);
   const schema = yup.object().shape({
     Status: yup.string().required(),
@@ -45,6 +59,22 @@ export const ChargerModal: FC<Props> = ({ onSave, onClose, charger }) => {
     "Charger Type": charger?.type,
     "Serial Number": charger?.serialNumber,
   };
+
+  const submit: SubmitHandler<ChargerFormValue> = async (d) => {
+    console.log("charger submit handler", d);
+    const formData = {
+      type: d["Charger Type"],
+      status: d.Status,
+      serialNumber: d["Serial Number"],
+    };
+    const c = charger ? { ...charger, ...formData } : formData;
+    setDisabled(true);
+    const res = await onSave(c as LocalCharger);
+    if (res) {
+      onClose();
+    }
+    // TODO: unable to submit
+  };
   return (
     <div className="add-charger">
       <div className="header">
@@ -53,16 +83,7 @@ export const ChargerModal: FC<Props> = ({ onSave, onClose, charger }) => {
       </div>
       <div className="divider" />
       <Form<ChargerFormValue>
-        onSubmit={(d) => {
-          console.log("this is onSubmit");
-          const formData = {
-            type: d["Charger Type"],
-            status: d.Status,
-            serialNumber: d["Serial Number"],
-          };
-          const c = charger ? { ...charger, ...formData } : formData;
-          onSave(c as LocalCharger);
-        }}
+        onSubmit={submit}
         formName="addEditCharger"
         defaultValues={defaultValues}
         schema={schema}
@@ -74,20 +95,12 @@ export const ChargerModal: FC<Props> = ({ onSave, onClose, charger }) => {
         </div>
         <div className="divider" />
         <div className="submit">
-          <Button
+          <SubmitButton
             theme={ButtonTheme.PRIMARY}
             title="Save"
             type="submit"
             form="addEditCharger"
-            onClick={() => {
-              subButtonRef?.current?.click();
-            }}
-          />
-          <input
-            ref={subButtonRef}
-            type="submit"
-            id="submit-it"
-            style={{ display: "none" }}
+            submit={submit}
           />
           <Button
             theme={ButtonTheme.DARK_PRIMARY}

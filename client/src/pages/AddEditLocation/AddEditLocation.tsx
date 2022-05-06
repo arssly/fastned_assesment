@@ -12,10 +12,13 @@ import {
   Modal,
   CrossIcon,
 } from "@components";
-import { Location, Charger, LocalCharger } from "@models";
+import { generateID } from "@src/utils";
+import { Location, LocalCharger } from "@models";
+import { useAddLocation } from "@src/services";
 import { AddEditFields } from "./AddEditFields";
 import { Chargers } from "./Chargers/Chargers";
 import "./addEdit.scss";
+import { SubmitHandler } from "react-hook-form";
 
 type Props = {
   editing?: boolean;
@@ -23,16 +26,25 @@ type Props = {
   modalView?: boolean;
 };
 
-type LocationFormValues = Omit<Location, "chargers">;
+type LocationFormValues = {
+  name: string;
+  "Location No": number;
+  city: string;
+  "Postal Code": string;
+  country: string;
+};
 
 export const AddEditLocation: FC<Props> = ({
   editing = false,
   location,
   modalView = false,
 }) => {
-  const [listedChargers, setListedChargers] = useState<Charger[]>(
+  const addLocation = useAddLocation();
+  const [listedChargers, setListedChargers] = useState<LocalCharger[]>(
     location?.chargers || []
   );
+
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     name: yup.string().min(3).max(50).required("name is required"),
@@ -42,25 +54,45 @@ export const AddEditLocation: FC<Props> = ({
       .integer("location No must be an integer")
       .required(),
     city: yup.string().min(3).max(50).required("city is required"),
-    "Postal Code": yup.number().required("postal code is required"),
+    "Postal Code": yup.string().required("postal code is required"),
     country: yup.string().required("country is required"),
   });
 
-  const addEditCharger = (charger: LocalCharger) => {
-    console.log("add or edit this charger", charger);
+  const addEditCharger = async (charger: LocalCharger) => {
+    if (!charger.id && !charger.localId) {
+      charger.localId = generateID();
+      setListedChargers([...listedChargers, charger]);
+      return true;
+    }
+    return false;
   };
 
   const deleteCharger = (charger: LocalCharger) => {
     console.log("delete this charger", charger);
   };
 
+  const submitLocation: SubmitHandler<LocationFormValues> = (l) => {
+    const newLocation = {
+      name: l.name,
+      location: l["Location No"],
+      postalCode: l["Postal Code"],
+      city: l.city,
+      country: l.country,
+      chargers: listedChargers.map((c) => ({
+        type: c.type,
+        status: c.status,
+        serialNumber: c.serialNumber,
+      })),
+    };
+    addLocation.mutate(newLocation);
+    navigate(-1);
+  };
+
   return (
     <div className="add-edit-location">
       <Form<LocationFormValues>
         formName="add-location"
-        onSubmit={(d) => {
-          console.log("submit data", d);
-        }}
+        onSubmit={submitLocation}
         schema={schema}
       >
         <Card className={cn("card-spacing", { modalView })}>

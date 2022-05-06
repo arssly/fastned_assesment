@@ -1,5 +1,5 @@
 import { FC, useState, ReactNode } from "react";
-import { Charger, LocalCharger, ChargerStatus } from "@models";
+import { LocalCharger, ChargerStatus } from "@models";
 import {
   DataTable,
   Modal,
@@ -15,9 +15,9 @@ import { ChargerHeader } from "./ChargerHeader";
 import { ChargerModal } from "./ChargerModal";
 
 function transformChargers(
-  chargers: Charger[],
-  addEditCallback: (charger: Charger) => void,
-  deleteCallback: (charger: Charger) => void
+  chargers: LocalCharger[],
+  addEditCallback: (charger: LocalCharger) => void,
+  deleteCallback: (charger: LocalCharger) => void
 ) {
   return chargers.map((c) => {
     let status = TagStatus.green;
@@ -29,17 +29,17 @@ function transformChargers(
     }
 
     const chargerButtons = (
-      <span>
+      <span className="charger-buttons">
         <Button
           theme={ButtonTheme.OUTLINE}
-          icon={<EditIcon width={36} height={36} />}
+          icon={<EditIcon width={24} height={24} />}
           onClick={() => {
             addEditCallback(c);
           }}
         />
         <Button
           theme={ButtonTheme.OUTLINE}
-          icon={<DeleteIcon width={36} height={36} />}
+          icon={<DeleteIcon width={24} height={24} />}
           onClick={() => {
             deleteCallback(c);
           }}
@@ -48,20 +48,21 @@ function transformChargers(
     );
 
     return [
-      c.id || null,
+      c.id || "---",
       c.type,
       c.serialNumber,
       <Tag status={status} key={c.id}>
         {c.status}
       </Tag>,
+      c.lastUpdated || "Not yet added",
       chargerButtons,
     ] as ReactNode[];
   });
 }
 
 type Props = {
-  chargers: Charger[];
-  onAddEditCharger: (charger: LocalCharger) => void;
+  chargers: LocalCharger[];
+  onAddEditCharger: (charger: LocalCharger) => Promise<boolean>;
   onDeleteCharger: (charger: LocalCharger) => void;
 };
 export const Chargers: FC<Props> = ({

@@ -24,6 +24,7 @@ export const ChargerHeader: FC<{ setModalOpen: () => void }> = ({
         title="Add Charger"
         icon={<AddIcon width={16} height={16} />}
         onClick={setModalOpen}
+        type="button"
       />
     </div>
   );

@@ -18,7 +18,11 @@ export type Charger = {
   lastUpdated: string;
 };
 
-export type LocalCharger = Partial<Charger> & { localId?: string };
+type SomePartial<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
+export type LocalCharger = SomePartial<Charger, "id" | "lastUpdated"> & {
+  localId?: string;
+};
 
 type LocationCommon = {
   id: number;

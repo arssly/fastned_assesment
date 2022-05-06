@@ -47,11 +47,12 @@ router.post("/", async (req, res, next) => {
     const location = await prisma.location.create({
       data: {
         name: req.body.name,
-        location: req.body.locationNo,
+        location: req.body.location,
         postalCode: String(req.body.postalCode),
         country: req.body.country,
+        city: req.body.city,
         chargers: {
-          createMany: req.body.chargers,
+          createMany: { data: req.body.chargers },
         },
       },
     });

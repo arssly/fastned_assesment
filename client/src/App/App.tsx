@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { Container, Header } from "@components";
+import { Container } from "@components";
 import { LocationList, AddEditLocation, AddEditLocationModal } from "@pages";
 
 function App() {
@@ -8,7 +8,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <Container>
         <Routes location={state?.backgroundLocation || location}>
           <Route path="/" element={<LocationList />} />
