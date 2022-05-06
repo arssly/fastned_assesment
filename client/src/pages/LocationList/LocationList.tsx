@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button, ButtonTheme, DataTable } from "@components";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { useGetLocations } from "@services";
@@ -7,6 +8,7 @@ import { Intro } from "./intro";
 import "./locationList.scss";
 
 export const LocationList: FC = () => {
+  const location = useLocation();
   const { data: locations, isLoading } = useGetLocations();
 
   const locationRows = locations?.map((l) => {
@@ -16,12 +18,17 @@ export const LocationList: FC = () => {
       l.chargerCount,
       l.country,
       formatDistanceToNow(new Date(l.lastUpdated)),
-      <Button
-        theme={ButtonTheme.OUTLINE}
-        title="Edit"
+      <Link
         key={`edit-${l.id}`}
-        className="edit-button"
-      />,
+        to={`/locations/${l.id}`}
+        state={{ backgroundLocation: location }}
+      >
+        <Button
+          theme={ButtonTheme.OUTLINE}
+          title="Edit"
+          className="edit-button"
+        />
+      </Link>,
     ] as ReactNode[];
   });
 

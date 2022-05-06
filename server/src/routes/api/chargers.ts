@@ -49,13 +49,13 @@ router.post("/", async (req, res, next) => {
 });
 
 router.put("/:id", async (req, res, next) => {
-  const { id } = req.params;
+  const { lid, id } = req.params as { lid: string; id: string };
   try {
     const updatedCharger = await prisma.charger.update({
       where: {
         id: Number(id),
       },
-      data: { ...req.body },
+      data: { ...req.body, locationId: Number(lid) },
     });
     res.json(updatedCharger);
   } catch (err) {

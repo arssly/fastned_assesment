@@ -12,9 +12,6 @@ type Props = {
 };
 
 export const AddEditFields: FC<Props> = ({ isEdit = false, location }) => {
-  if (isEdit && !location) {
-    throw new Error("component is set to editing but no location is passed");
-  }
   return (
     <>
       <AddEditHeading isEdit={isEdit} location={location} />

@@ -31,6 +31,7 @@ type LocationCommon = {
   postalCode: string;
   lastUpdated: string;
   country: string;
+  city: string;
 };
 
 export type Location = LocationCommon & { chargers: Charger[] };

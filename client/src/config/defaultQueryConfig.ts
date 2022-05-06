@@ -1,3 +1,4 @@
+import { DefaultOptions } from "react-query";
 export default {
   queries: {
     // we don't need stale time
@@ -19,9 +20,9 @@ export default {
      * If set to false, the query will not refetch on mount.
      * If set to "always", the query will always refetch on mount.
      */
-    refetchOnMount: true,
+    refetchOnMount: "always",
 
     // I believe the default is alright
     // cacheTime: 5 * 60 * 1000,
   },
-};
+} as DefaultOptions;
