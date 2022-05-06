@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { prisma } from "@src/prisma";
+import { prisma } from "../../prisma";
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
         },
       },
     });
-    const locations = locationsWithCount.map((l) => {
+    const locations = locationsWithCount.map((l: any) => {
       const {
         _count: { chargers },
         ...loc

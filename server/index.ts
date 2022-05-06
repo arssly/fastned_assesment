@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import router from "@src/routes";
-import { ErrorStatus } from "@src/models";
+import router from "./src/routes";
+import { ErrorStatus } from "./src/models";
 
 const { PORT } = process.env;
 const app = express();
