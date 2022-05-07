@@ -57,6 +57,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  font-size: texts.$small-font-size;
 }
 
 .custom-options {
@@ -73,6 +74,7 @@
   z-index: 2;
   padding: spacing.$s-3;
   overflow-y: auto;
+  font-size: texts.$small-font-size;
 }
 
 .custom-select.open .custom-options {
@@ -87,13 +89,12 @@
 .custom-option {
   position: relative;
   display: block;
-  padding: spacing.$s-2 spacing.$s-3;
+  padding: spacing.$s-4 spacing.$s-3;
   cursor: pointer;
   transition: all 0.5s;
   border-radius: spacing.$s-2;
   color: colors.$medium-text-color;
   margin-bottom: spacing.$s-4;
-  height: spacing.$s-7;
 }
 
 .option-container:hover {

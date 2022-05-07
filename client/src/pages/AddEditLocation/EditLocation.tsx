@@ -28,6 +28,7 @@ export const EditLocation: FC<{ modalView?: boolean }> = ({
         onClose={() => {
           navigate(-1);
         }}
+        containerClassName="max-width"
       >
         <div className="close-modal">
           <CrossIcon

@@ -33,17 +33,18 @@ function transformChargers(
         <Button
           theme={ButtonTheme.OUTLINE}
           type="button"
-          icon={<EditIcon width={24} height={24} />}
+          icon={<DeleteIcon width={20} height={20} />}
           onClick={() => {
-            openEditModal(c);
+            deleteCallback(c);
           }}
+          className="danger-color"
         />
         <Button
           theme={ButtonTheme.OUTLINE}
           type="button"
-          icon={<DeleteIcon width={24} height={24} />}
+          icon={<EditIcon width={20} height={20} />}
           onClick={() => {
-            deleteCallback(c);
+            openEditModal(c);
           }}
         />
       </span>
@@ -115,7 +116,11 @@ export const Chargers: FC<Props> = ({
         data={transformedChargers}
         emptyMessage="no Charger has been added to this location yet"
       />
-      <Modal isOpen={modalOpen} onClose={closeModal}>
+      <Modal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        containerClassName="max-width"
+      >
         <ChargerModal
           onClose={closeModal}
           onSave={onChargerSave}

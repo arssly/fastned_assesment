@@ -1,11 +1,13 @@
 @use "src/styles/spacing";
 @use "src/styles/colors";
+@use "src/styles/texts";
 
 .tag { 
   border-radius: spacing.$s-2;
   padding: spacing.$s-3 spacing.$s-4;
   color: colors.$white;
   font-weight: 600;
+  font-size: texts.$very-small-font-size;
 
   &.green { 
     background-color: colors.$green;

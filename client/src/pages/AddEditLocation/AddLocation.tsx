@@ -9,7 +9,7 @@ export const AddLocation: FC<{ modalView?: boolean }> = ({
   const navigate = useNavigate();
 
   if (!modalView) {
-    return <AddEditLocation editing modalView={modalView} />;
+    return <AddEditLocation modalView={modalView} />;
   } else {
     return (
       <Modal
@@ -17,6 +17,7 @@ export const AddLocation: FC<{ modalView?: boolean }> = ({
         onClose={() => {
           navigate(-1);
         }}
+        containerClassName="max-width"
       >
         <div className="close-modal">
           <CrossIcon
@@ -27,7 +28,7 @@ export const AddLocation: FC<{ modalView?: boolean }> = ({
             }}
           />
         </div>
-        <AddEditLocation editing modalView={modalView} />
+        <AddEditLocation modalView={modalView} />
       </Modal>
     );
   }

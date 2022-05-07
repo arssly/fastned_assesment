@@ -3,15 +3,7 @@ import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import * as yup from "yup";
 
-import {
-  Card,
-  Form,
-  Button,
-  ButtonTheme,
-  SaveIcon,
-  Modal,
-  CrossIcon,
-} from "@components";
+import { Card, Form, Button, ButtonTheme, SaveIcon } from "@components";
 import { generateID } from "@src/utils";
 import { Location, LocalCharger } from "@models";
 import {
@@ -77,6 +69,7 @@ export const AddEditLocation: FC<Props> = ({
   });
 
   const addEditCharger = async (charger: LocalCharger) => {
+    console.log("add edit charger");
     // this means the charger has just been created add it to the list
     if (!charger.id && !charger.localId && !editing) {
       charger.localId = generateID();
@@ -172,28 +165,5 @@ export const AddEditLocation: FC<Props> = ({
         </div>
       </Form>
     </div>
-  );
-};
-
-export const AddEditLocationModal: FC<Props> = (props) => {
-  const navigate = useNavigate();
-  return (
-    <Modal
-      isOpen
-      onClose={() => {
-        navigate(-1);
-      }}
-    >
-      <div className="close-modal">
-        <CrossIcon
-          width={36}
-          height={36}
-          onClick={() => {
-            navigate(-1);
-          }}
-        />
-      </div>
-      <AddEditLocation {...props} modalView />
-    </Modal>
   );
 };
